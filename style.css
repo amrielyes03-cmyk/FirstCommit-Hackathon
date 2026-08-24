@@ -1,0 +1,33 @@
+:root {
+  /* Haupt-Farben (Backgrounds & Surface) */
+  --bg-dark: #0f0f13;         /* Sehr dunkler, eleganter Hintergrund */
+  --bg-card: #181820;         /* Karten & Header Hintergrund */
+  --bg-input: #232330;        /* Suchfeld & Hover-Flächen */
+
+  /* Akzent-Farben (Highlights & Branding) */
+  --primary: #8a2be2;         /* Neon Violett für Logo & Haupt-Buttons */
+  --primary-hover: #9d4edd;   /* Hellers Violett für Hover-Effekte */
+  --accent: #ff2a75;          /* Neon Pink für Abzeichen, Ratings & Favoriten */
+
+  /* Text-Farben */
+  --text-main: #f1f1f5;       /* Sehr helles Grau für gute Lesbarkeit */
+  --text-muted: #9e9ea7;      /* Gedämpftes Grau für Untertitel/Details */
+
+  /* Border & Schatten */
+  --border-color: #2e2e3e;    /* Subtile Linien zur Trennung */
+  --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.4); /* Sanfter Tiefe-Effekt */
+  --radius: 12px;             /* Modere, abgerundete Ecken */
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  min-height: 100vh;
+}
