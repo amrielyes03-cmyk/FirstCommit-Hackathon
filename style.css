@@ -32,6 +32,8 @@ body {
   font-family: 'Domine', serif;
 }
 
+/* Header Styles */
+
 header {
   padding: 2rem;
   display: flex;
@@ -113,4 +115,74 @@ header {
 .filter-buttons button:hover {
   background-color: var(--primary-hover);
   transform: scale(1.05);
+}
+
+/* Card Styles */
+
+.anime-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.anime-card {
+  background-color: var(--bg-card);
+  border-radius: var(--radius);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 12px;
+  transition: all 0.3s ease;
+  min-width: 0; /* Verhindert, dass Flex-Kinder das Grid-Element sprengen */
+}
+
+.anime-card:hover {
+  transform: scale(1.05);
+  box-shadow: var(--shadow-card);
+}
+
+.anime-card img {
+  width: 100%;
+  aspect-ratio: 2 / 3; /* Erzwingt Standard-Poster-Format */
+  object-fit: cover;   /* Verhindert Bildverzerrung */
+}
+
+.anime-card h3 {
+  font-size: 14px;
+  margin: 0;
+  padding: 12px 16px 0 16px; /* Unten 0px, da die Card bereits padding-bottom: 12px hat */
+  text-align: center;
+  line-height: 1.4;
+  word-break: break-word;
+  
+  /* Multiline-Truncation */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  
+  /* Verhindert Flex-Expansion über die Card hinaus */
+  max-height: calc(14px * 1.4 * 2 + 12px); 
+}
+
+.status-msg {
+    grid-column: 1 / -1; /* Dehnt die Meldung über die gesamte Breite des Grids aus */
+    text-align: center;
+    font-size: 18px;
+    color: var(--text-main);
+    padding: 40px 0;
+}
+
+.status-msg.error {
+    color: #e50914; /* Rot für Fehler */
+}
+
+.extraInfo {
+  display: none;
+    font-size: 12px;
+    color: var(--text-muted);
+    text-align: center;
+    margin-top: 4px;
 }
