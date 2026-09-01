@@ -16,7 +16,7 @@ const mockDevices = [
         vendor: "Apple, Inc.",
         status: "online",
         risk: "low",
-        hostname: "iPhone-von-Max"
+        hostname: "iPhone-von-Elyes"
     },
     {
         ip: "192.168.1.25",
