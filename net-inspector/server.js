@@ -1,36 +1,32 @@
 const express = require('express');
-const cors = require('cors'); // <-- HIER NEU
+const cors = require('cors');
+const find = require('local-devices');
+
 const app = express();
 const PORT = 3000;
 
-app.use(cors()); // <-- HIER NEU: Erlaubt den Zugriff von außen (z.B. deinem Live Server)
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*'); // Erlaubt Anfragen von jeder Webseite/Browser
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    next();
+});
 
 app.get('/', (req, res) => {
     res.send('Willkommen beim Netzwerkinspektor-Backend!');
 });
 
-const mockDevices = [
-    {
-        ip: "192.168.1.10",
-        mac: "A1:B2:C3:D4:E5:F6",
-        vendor: "Apple, Inc.",
-        status: "online",
-        risk: "low",
-        hostname: "iPhone-von-Elyes"
-    },
-    {
-        ip: "192.168.1.25",
-        mac: "58:CC:23:FF:EE:DD",
-        vendor: "Espressif Inc. (IoT Device)",
-        status: "online",
-        risk: "medium",
-        hostname: "ESP32-SmartPlug"
-    }
-];
 
-app.get('/api/devices', (req, res) => {
-    res.json(mockDevices);
+app.get('/api/devices', async (req, res) => {
+    try {
+        const devices = await find();
+        console.log("Gefundene echte Geräte:", devices);
+        res.json(devices);
+    } catch (error) {
+        console.error('Fehler beim Netzwerk-Scan:', error);
+        res.status(500).json({ error: 'Netzwerk-Scan fehlgeschlagen' });
+    }
 });
+
 
 app.listen(PORT, () => {
     console.log(`Server läuft auf http://localhost:${PORT}`);
